@@ -52,5 +52,12 @@ public class Patient implements Serializable{
 	  @JsonIgnore
 	  @OneToMany(mappedBy="patient",fetch=FetchType.LAZY)
 	  private List<Rendezvous>rendezvousList;
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
