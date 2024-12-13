@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SpecialityService implements ISpeciality {
@@ -17,6 +18,11 @@ public class SpecialityService implements ISpeciality {
     @Override
     public Speciality saveSpeciality(Speciality speciality) {
         return specialityRepository.save(speciality); // Utilisation correcte
+    }
+
+    @Override
+    public Optional<Speciality> getSpecialityByName(String specialityName) {
+        return specialityRepository.findBySpecialityName(specialityName);
     }
 
     @Override
