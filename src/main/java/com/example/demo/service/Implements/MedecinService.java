@@ -17,21 +17,21 @@ public class MedecinService implements IMedecin {
     @Autowired
     private SpecialityRepository specialityRepository;
 
+    @Override
     public Medecin saveMedecin(Medecin medecin) {
-        // Vérifie si la spécialité existe déjà par son ID
-        Speciality speciality = specialityRepository.findById(medecin.getSpecialitie().getId())
+        // Recherche de la spécialité par son nom
+        Speciality speciality = specialityRepository.findBySpecialityName(medecin.getSpecialitie().getSpecialityName())
                 .orElseGet(() -> {
-                    // Si la spécialité n'existe pas, crée une nouvelle spécialité
+                    // Création et sauvegarde d'une nouvelle spécialité
                     Speciality newSpeciality = new Speciality();
-                    newSpeciality.setId(medecin.getSpecialitie().getId());  // Utilise l'ID transmis par le Medecin
-                    newSpeciality.setSpecialityName(medecin.getSpecialitie().getSpecialityName());  // Associe le nom
-                    return specialityRepository.save(newSpeciality);  // Sauvegarde la nouvelle spécialité
+                    newSpeciality.setSpecialityName(medecin.getSpecialitie().getSpecialityName());
+                    return specialityRepository.save(newSpeciality);
                 });
 
-        // Associe la spécialité au médecin
+        // Associe la spécialité trouvée ou créée au médecin
         medecin.setSpecialitie(speciality);
 
-        // Sauvegarde le médecin
+        // Sauvegarde du médecin
         return medecinRepository.save(medecin);
     }
 
