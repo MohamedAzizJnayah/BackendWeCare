@@ -21,6 +21,24 @@ public class PatientController {
         System.out.println("*******" + p.getEmail());
         return p;
     }
+    // Nouvelle méthode pour gérer la connexion
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Patient patient) {
+        System.out.println("Patient email: " + patient.getEmail());
+        System.out.println("Patient password: " + patient.getPassword());
+
+        Patient existingPatient = patientservice.findPatientByEmail(patient.getEmail());
+
+        if (existingPatient == null) {
+            return ResponseEntity.status(401).body("Email incorrect.");
+        }
+
+        if (existingPatient.getPassword() != null && existingPatient.getPassword().equals(patient.getPassword())) {
+            return ResponseEntity.ok(existingPatient);
+        } else {
+            return ResponseEntity.status(401).body("Mot de passe incorrect.");
+        }
+    }
 
     @GetMapping("/{id}")
     Patient getPatientById(@PathVariable Long id) {
@@ -48,17 +66,12 @@ public class PatientController {
         return true;
     }
 
-    // Nouvelle méthode pour gérer la connexion
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Patient patient) {
-        Patient existingPatient = patientservice.findPatientByEmail(patient.getEmail());
 
-        if (existingPatient != null && existingPatient.getPassword().equals(patient.getPassword())) {
-            // Si le patient existe et que le mot de passe est correct
-            return ResponseEntity.ok(existingPatient); // Retourne les informations du patient
-        } else {
-            // Si les informations sont incorrectes
-            return ResponseEntity.status(401).body("Email ou mot de passe incorrect."); // Erreur d'authentification
-        }
-    }
+
+
+        // Si le patient n'existe pas ou le mot de passe est incorrect
+
+
+
+
 }

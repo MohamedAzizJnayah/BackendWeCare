@@ -12,7 +12,7 @@ public class Patient implements Serializable{
 	  public Patient() {
 		super();
 	}
-	public Patient(Long id, String nom, String email, List<Rendezvous> rendezvousList) {
+	public Patient(Long id, String nom, String email) {
 		super();
 		this.id = id;
 		this.nom = nom;
