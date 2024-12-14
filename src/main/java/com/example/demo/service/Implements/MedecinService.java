@@ -8,6 +8,8 @@ import com.example.demo.service.interfaces.IMedecin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MedecinService implements IMedecin {
 
@@ -56,6 +58,10 @@ public class MedecinService implements IMedecin {
         return (int) medecinRepository.count();
     }
 
+    @Override
+    public List<Medecin> findMedecinsBySpecialiteId(Long specialiteId) {
+        return medecinRepository.findMedecinsBySpecialiteId(specialiteId);
+    }
     @Override
     public void deleteMedecin(Long id) {
         medecinRepository.deleteById(id);

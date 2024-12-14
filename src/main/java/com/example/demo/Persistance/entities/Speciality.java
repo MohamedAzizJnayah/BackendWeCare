@@ -20,18 +20,11 @@ public class Speciality implements Serializable {
 
 
 
-    @OneToMany(mappedBy = "specialitie")
-    private List<Medecin> medecins;
+
     public Long getId() {
         return id;
     }
-    public List<Medecin> getMedecins() {
-        return medecins;
-    }
 
-    public void setMedecins(List<Medecin> medecins) {
-        this.medecins = medecins;
-    }
 
     public void setId(Long id) {
         this.id = id;
