@@ -18,8 +18,6 @@ public class Medecin implements Serializable {
     private String nom;
     private String email;
     private String password;
-    @OneToMany(mappedBy = "medecin")
-    private List<Rendezvous> Listrdv;
     
     @ManyToOne
     private Speciality specialitie;
@@ -56,13 +54,6 @@ public class Medecin implements Serializable {
         this.password = password;
     }
 
-    public List<Rendezvous> getListrdv() {
-        return Listrdv;
-    }
-
-    public void setListrdv(List<Rendezvous> listrdv) {
-        Listrdv = listrdv;
-    }
 
     public Speciality getSpecialitie() {
         return specialitie;

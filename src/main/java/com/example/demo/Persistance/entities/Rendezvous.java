@@ -15,7 +15,13 @@ public class Rendezvous implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dateRDV;
+    private LocalDateTime heureRDV;
+    @ManyToOne
+    private Patient patient;
 
+    @ManyToOne
+    private Medecin medecin;
+    //Getters + Setters
     public LocalDateTime getDateRDV() {
         return dateRDV;
     }
@@ -47,10 +53,4 @@ public class Rendezvous implements Serializable {
     public void setMedecin(Medecin medecin) {
         this.medecin = medecin;
     }
-
-    private LocalDateTime heureRDV;
-    @ManyToOne
-    private Patient patient;
-    @ManyToOne
-    private Medecin medecin;
 }

@@ -17,7 +17,6 @@ public class Patient implements Serializable{
 		this.id = id;
 		this.nom = nom;
 		this.email = email;
-		this.rendezvousList = rendezvousList;
 	}
 	public Long getId() {
 		return id;
@@ -37,12 +36,7 @@ public class Patient implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public List<Rendezvous> getRendezvousList() {
-		return rendezvousList;
-	}
-	public void setRendezvousList(List<Rendezvous> rendezvousList) {
-		this.rendezvousList = rendezvousList;
-	}
+
 	@Id 
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private Long id;
@@ -50,8 +44,7 @@ public class Patient implements Serializable{
 	  private String email;
 	  private String password;
 	  @JsonIgnore
-	  @OneToMany(mappedBy="patient",fetch=FetchType.LAZY)
-	  private List<Rendezvous>rendezvousList;
+
 
 	public String getPassword() {
 		return password;

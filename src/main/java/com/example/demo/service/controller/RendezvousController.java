@@ -2,6 +2,7 @@ package com.example.demo.service.controller;
 import com.example.demo.Persistance.entities.Rendezvous;
 import com.example.demo.service.interfaces.IRendezVous;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class RendezvousController {
     public List<Rendezvous> getAllRendezvous() {
         return RendezVousService.getAllRendezvous();
     }
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Serveur fonctionne !");
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteRendezvous(@PathVariable Long id) {
